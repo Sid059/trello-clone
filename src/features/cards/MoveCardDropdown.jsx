@@ -48,8 +48,9 @@ export default function MoveCardDropdown({ card, currentListId, onMoveComplete }
                 variant="secondary"
                 onClick={() => setIsOpen(!isOpen)}
                 className="text-xs px-2 py-1"
+                icon="arrow_drop_down"
             >
-                Move ↓
+                {/* Move */}
             </Button>
             
             {isOpen && (

@@ -54,21 +54,21 @@ export default function ListColumn({ list, onDeleteList }) {
     const listCards = getListCards();
 
     return (
-        <div className="bg-gray-200 rounded-lg p-4 min-w-[280px] max-w-[280px]">
-            <div className="flex justify-between items-start mb-3">
-                <h3 className="font-semibold text-gray-800">
+        <div className="bg-[#ebecf0] rounded-lg p-3 min-w-[272px] max-w-[272px]">
+            <div className="flex justify-between items-center mb-3">
+                <h3 className="font-semibold text-gray-700 text-sm uppercase tracking-wide">
                     {list.title}
                 </h3>
                 <Button
                     variant="danger"
                     onClick={handleDeleteClick}
-                    className="text-sm px-2 py-1"
+                    className="text-xs px-2 py-1 opacity-0 group-hover/list:opacity-100 transition-opacity"
+                    icon="delete"
                 >
-                    Delete
                 </Button>
             </div>
 
-            <div className="min-h-[100px] mb-3">
+            <div className="min-h-[100px] mb-2">
                 {listCards.length === 0 ? (
                     <p className="text-gray-400 text-sm text-center py-4">
                         No cards yet
@@ -79,22 +79,26 @@ export default function ListColumn({ list, onDeleteList }) {
                     ))
                 )}
             </div>
+            
 
-            <div className="flex gap-2 mt-2">
-                <Input
-                    value={newCardTitle}
-                    onChange={handleCardInputChange}
-                    onKeyDown={handleCardKeyDown}
-                    placeholder="+ Add a card..."
-                    className="text-sm"
-                />
-                <Button
-                    variant="primary"
-                    onClick={handleAddCard}
-                    className="text-sm px-3 py-1"
-                >
-                    Add
-                </Button>
+            <div className="mt-2 pt-2 border-t border-gray-300">
+                <div className="flex gap-2">
+                    <Input
+                        value={newCardTitle}
+                        onChange={handleCardInputChange}
+                        onKeyDown={handleCardKeyDown}
+                        placeholder="+ Add a card..."
+                        className="text-sm bg-transparent border-none shadow-none focus:ring-0 px-2 py-1"
+                    />
+                    <Button
+                        variant="primary"
+                        onClick={handleAddCard}
+                        className="text-sm px-3 py-1"
+                        icon="add"
+                    >
+                        {/* Add */}
+                    </Button>
+                </div>
             </div>
         </div>
     );

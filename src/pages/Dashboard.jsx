@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/reusable/Button';
 import Input from '../components/reusable/Input';
 
+import dashboard from '../assets/icons/dashboard.png';
+
 export default function Dashboard() {
     
     const dispatch = useDispatch();
@@ -54,14 +56,17 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 p-8">
+        <div className="min-h-screen p-8" style={{ backgroundColor: '#f4f5f7' }}>
             <div className="max-w-6xl mx-auto">
-                <h1 className="text-3xl font-bold text-gray-800 mb-8">
-                    My Boards
-                </h1>
+                <div className="flex items-center gap-3 mb-8">
+                    <img src={dashboard} alt="Boards" className="w-8 h-8" />
+                    <h1 className="text-3xl font-bold text-gray-800">
+                        My Boards
+                    </h1>
+                </div>
                 
-                <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-                    <h2 className="text-xl font-semibold mb-4">
+                <div className="bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-200">
+                    <h2 className="text-xl font-semibold mb-4 text-gray-700">
                         Create New Board
                     </h2>
                     <div className="flex gap-4">
@@ -73,42 +78,42 @@ export default function Dashboard() {
                                 placeholder="Enter board title..."
                             />
                         </div>
-                        <Button variant="primary" onClick={handleAddBoard}>
+                        <Button variant="primary" onClick={handleAddBoard} icon="add">
                             Add Board
                         </Button>
                     </div>
                 </div>
                 
                 {boardList.length === 0 ? (
-                    <div className="bg-white rounded-lg shadow-md p-12 text-center">
+                    <div className="bg-white rounded-lg p-12 text-center border-2 border-dashed border-gray-300">
                         <p className="text-gray-500 text-lg">
                             No boards yet. Create your first board above!
                         </p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {boardList.map((board) => (
                             <div
                                 key={board.id}
                                 onClick={handleBoardClick(board.id)}
-                                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
+                                className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden border border-gray-200"
                             >
+                                <div className="h-24 bg-gradient-to-r from-[#0079bf] to-[#c377e0]"></div>
+
                                 <div className="p-4">
-                                    <div className="flex justify-between items-start">
-                                        <h3 className="text-lg font-semibold text-gray-800 break-words flex-1 mr-2">
-                                            {board.title}
-                                        </h3>
-                                        <Button
-                                            variant="danger"
-                                            onClick={handleDeleteClick(board.id)}
-                                            className="text-sm px-2 py-1"
-                                        >
-                                            Delete
-                                        </Button>
-                                    </div>
-                                    <p className="text-gray-500 text-sm mt-2">
+                                    <h3 className="font-semibold text-gray-800 mb-2">
+                                        {board.title}
+                                    </h3>
+                                    <p className="text-gray-500 text-sm mb-2">
                                         {board.listIds?.length || 0} lists
                                     </p>
+                                    <Button
+                                        variant="danger"
+                                        onClick={handleDeleteClick(board.id)}
+                                        className="text-xs px-2 py-1"
+                                        icon="delete"
+                                    >
+                                    </Button>
                                 </div>
                             </div>
                         ))}
