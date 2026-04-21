@@ -47,5 +47,5 @@ const boardsSlice = createSlice({
     }
 });
 
-export const { addBoard, deleteBoard, updateBoardTitle, addListToBoard } = boardsSlice.actions;
+export const { addBoard, deleteBoard, updateBoardTitle, addListToBoard, removeListFromBoard } = boardsSlice.actions;
 export default boardsSlice.reducer;
