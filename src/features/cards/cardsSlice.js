@@ -41,9 +41,16 @@ const cardsSlice = createSlice({
             if(state.byId[id]){
                 state.byId[id].description = description;
             }
+        },
+
+        moveCardToList: (state, action) => {
+            const { cardId, newListId } = action.payload;
+            if(state.byId[cardId]) {
+                state.byId[cardId].listId = newListId;
+            }
         }
     }
 })
 
-export const { addCard, deleteCard, updateCardTitle, updateCardDescription } = cardsSlice.actions;
+export const { addCard, deleteCard, updateCardTitle, updateCardDescription, moveCardToList } = cardsSlice.actions;
 export default cardsSlice.reducer;
