@@ -33,9 +33,19 @@ const boardsSlice = createSlice({
             if (state.byId[id]) {
                 state.byId[id].title = title; // Update the title of the specified board
             }
+        },
+
+        addListToBoard: (state, action) => {
+            const { boardId, listId } = action.payload;
+            state.byId[boardId]?.listIds.push(listId);
+        },
+
+        removeListFromBoard: (state, action) => {
+            const { boardId, listId } = action.payload;
+            state.byId[boardId].listIds = state.byId[boardId]?.listIds.filter( id => id !== listId );
         }
     }
 });
 
-export const { addBoard, deleteBoard, updateBoardTitle } = boardsSlice.actions;
+export const { addBoard, deleteBoard, updateBoardTitle, addListToBoard } = boardsSlice.actions;
 export default boardsSlice.reducer;
