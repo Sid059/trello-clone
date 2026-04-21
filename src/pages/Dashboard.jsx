@@ -17,6 +17,18 @@ export default function Dashboard() {
 
     const boardList = boards.allIds.map( id => boards.byId[id]);
 
+    const handleOnChange = ({ target }) => {
+        const { value } = target;
+        setNewBoardTitle(value);
+    }
+
+    const handleKeyDown = ({ key }) => {
+        if (key === 'Enter') {
+            handleAddBoard();
+            console.log("enter pressed")
+        }
+    }
+
     const handleAddBoard = () => {
         if(newBoardTitle.trim() === '') {
             alert('Please enter a title for the Dashboard');
@@ -41,12 +53,10 @@ export default function Dashboard() {
     return (
         <div className="min-h-screen bg-gray-100 p-8">
             <div className="max-w-6xl mx-auto">
-                {/* Header */}
                 <h1 className="text-3xl font-bold text-gray-800 mb-8">
                     My Boards
                 </h1>
                 
-                {/* Add Board Form */}
                 <div className="bg-white rounded-lg shadow-md p-6 mb-8">
                     <h2 className="text-xl font-semibold mb-4">
                         Create New Board
@@ -55,13 +65,9 @@ export default function Dashboard() {
                         <div className="flex-1">
                             <Input
                                 value={newBoardTitle}
-                                onChange={(e) => setNewBoardTitle(e.target.value)}
+                                onChange={handleOnChange}
+                                onKeyDown={handleKeyDown}
                                 placeholder="Enter board title..."
-                                onKeyPress={(e) => {
-                                if (e.key === 'Enter') {
-                                    handleAddBoard();
-                                    }
-                                }}
                             />
                         </div>
                         <Button variant="primary" onClick={handleAddBoard}>
@@ -70,41 +76,40 @@ export default function Dashboard() {
                     </div>
                 </div>
                 
-                {/* Boards Grid */}
                 {boardList.length === 0 ? (
-                <div className="bg-white rounded-lg shadow-md p-12 text-center">
-                    <p className="text-gray-500 text-lg">
-                        No boards yet. Create your first board above!
-                    </p>
-                </div>
-                ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {boardList.map((board) => (
-                    <div
-                        key={board.id}
-                        onClick={() => handleSelectBoard(board.id)}
-                        className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
-                    >
-                        <div className="p-4">
-                            <div className="flex justify-between items-start">
-                                <h3 className="text-lg font-semibold text-gray-800 break-words flex-1 mr-2">
-                                    {board.title}
-                                </h3>
-                                <Button
-                                    variant="danger"
-                                    onClick={(e) => handleDeleteBoard(board.id, e)}
-                                    className="text-sm px-2 py-1"
-                                >
-                                    Delete
-                                </Button>
-                            </div>
-                            <p className="text-gray-500 text-sm mt-2">
-                                {board.listIds?.length || 0} lists
-                            </p>
-                        </div>
+                    <div className="bg-white rounded-lg shadow-md p-12 text-center">
+                        <p className="text-gray-500 text-lg">
+                            No boards yet. Create your first board above!
+                        </p>
                     </div>
-                    ))}
-                </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {boardList.map((board) => (
+                            <div
+                                key={board.id}
+                                onClick={() => handleSelectBoard(board.id)}
+                                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
+                            >
+                                <div className="p-4">
+                                    <div className="flex justify-between items-start">
+                                        <h3 className="text-lg font-semibold text-gray-800 break-words flex-1 mr-2">
+                                            {board.title}
+                                        </h3>
+                                        <Button
+                                            variant="danger"
+                                            onClick={(event) => handleDeleteBoard(board.id, event)}
+                                            className="text-sm px-2 py-1"
+                                        >
+                                            Delete
+                                        </Button>
+                                    </div>
+                                    <p className="text-gray-500 text-sm mt-2">
+                                        {board.listIds?.length || 0} lists
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 )}
             </div>
         </div>

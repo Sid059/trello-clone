@@ -16,10 +16,10 @@ const boardsSlice = createSlice({
                 id,
                 title: action.payload.title,
                 listIds: [], // Initialze with an empty array of list IDs
-                };
+            };
 
-                state.byId[id] = newBoard; // Add the new board to the byId object
-                state.allIds.push(id); // Add the new board's ID to the allIds array
+            state.byId[id] = newBoard; // Add the new board to the byId object
+            state.allIds.push(id); // Add the new board's ID to the allIds array
         },
 
         deleteBoard: (state, action) => {

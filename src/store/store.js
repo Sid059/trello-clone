@@ -2,17 +2,17 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import boardsReducer from '../features/boards/boardsSlice';
-//import listsReducer from '../features/lists/listsSlice';    //later to be worked
+import listsReducer from '../features/lists/listsSlice';
 
 const rootReducer = combineReducers({
-    boards: boardsReducer
-    //lists: listsReducer, //later to be worked
+    boards: boardsReducer,
+    lists: listsReducer,
 });
 
 const persistConfig = {
     key: 'trello-root',
     storage,
-    whitelist: ['boards'],       //only boards for now
+    whitelist: ['boards','lists'],       //only boards for now
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -1,4 +1,4 @@
-export default function Input({ type="text", placeholder="", value, onChange, className="" }){
+export default function Input({ type="text", placeholder="", value, onChange, className="", onKeyDown }){
     const baseClasses =  [
         "w-full",           // Full width of container
         "px-3",            // Horizontal padding
@@ -21,6 +21,7 @@ export default function Input({ type="text", placeholder="", value, onChange, cl
             value={value}
             onChange={onChange}
             className={combineClasses}
+            onKeyDown={onKeyDown}
         />
     )
 }
