@@ -42,16 +42,19 @@ const listsSlice = createSlice({
         // Adds card ID to list's cardIds array (for when we build cards)
         addCardToList: (state, action) => {
             const { listId, cardId } = action.payload;
-            if (state.byId[listId]) {
-                state.byId[listId].cardIds.push(cardId);
-            }
+            state.byId[listId]?.cardIds.push(cardId);
         },
 
-        reorderLists: (state, action) => {
-        // Placeholder - will implement later
+        removeCardFromList: (state, action) => {
+            const { listId, cardId } = action.payload;
+            state.byId[listId].cardIds = state.byId[listId]?.cardIds.filter( id => id !== cardId );
         }
+
+        // reorderLists: (state, action) => {
+        // // Placeholder - will implement later
+        // }
     }
 });
 
-export const { addList, deleteList, updateListTitle, reorderLists, addCardToList } = listsSlice.actions;
+export const { addList, deleteList, updateListTitle, reorderLists, addCardToList, removeCardFromList } = listsSlice.actions;
 export default listsSlice.reducer;

@@ -8,30 +8,25 @@ import Input from '../components/reusable/Input';
 export default function Dashboard() {
     
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
-
     const boards = useSelector(state => state.boards);
-
     const [newBoardTitle, setNewBoardTitle] = useState('');
 
-    const boardList = boards.allIds.map( id => boards.byId[id]);
+    const boardList = boards.allIds.map(id => boards.byId[id]);
 
-    const handleOnChange = ({ target }) => {
-        const { value } = target;
-        setNewBoardTitle(value);
+    const handleBoardTitleChange = ({ target }) => {
+        setNewBoardTitle(target.value);
     }
 
     const handleKeyDown = ({ key }) => {
         if (key === 'Enter') {
             handleAddBoard();
-            console.log("enter pressed")
         }
     }
 
     const handleAddBoard = () => {
-        if(newBoardTitle.trim() === '') {
-            alert('Please enter a title for the Dashboard');
+        if (newBoardTitle.trim() === '') {
+            alert('Please enter a title for the board');
             return;
         }
 
@@ -47,8 +42,16 @@ export default function Dashboard() {
     }
 
     const handleSelectBoard = (boardId) => {
-        navigate(`/board/${boardId}`);  // this will navigate to the selected boards page with dynamic routing and display the lists and cards of the selected board
+        navigate(`/board/${boardId}`);
     }
+
+    const handleDeleteClick = (boardId) => (event) => {
+        handleDeleteBoard(boardId, event);
+    };
+
+    const handleBoardClick = (boardId) => () => {
+        handleSelectBoard(boardId);
+    };
 
     return (
         <div className="min-h-screen bg-gray-100 p-8">
@@ -65,7 +68,7 @@ export default function Dashboard() {
                         <div className="flex-1">
                             <Input
                                 value={newBoardTitle}
-                                onChange={handleOnChange}
+                                onChange={handleBoardTitleChange}
                                 onKeyDown={handleKeyDown}
                                 placeholder="Enter board title..."
                             />
@@ -87,7 +90,7 @@ export default function Dashboard() {
                         {boardList.map((board) => (
                             <div
                                 key={board.id}
-                                onClick={() => handleSelectBoard(board.id)}
+                                onClick={handleBoardClick(board.id)}
                                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
                             >
                                 <div className="p-4">
@@ -97,7 +100,7 @@ export default function Dashboard() {
                                         </h3>
                                         <Button
                                             variant="danger"
-                                            onClick={(event) => handleDeleteBoard(board.id, event)}
+                                            onClick={handleDeleteClick(board.id)}
                                             className="text-sm px-2 py-1"
                                         >
                                             Delete
