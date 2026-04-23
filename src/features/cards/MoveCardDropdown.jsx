@@ -62,7 +62,7 @@ export default function MoveCardDropdown({ card, currentListId, onMoveComplete }
                     />
                     
                     {/* Dropdown menu */}
-                    <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-20 min-w-[150px]">
+                    <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-20 min-w-[150px]" style={{ maxHeight: '150px', overflowY: 'auto' }}>
                         <div className="py-1">
                             <div className="px-3 py-1 text-xs font-semibold text-gray-500 border-b">
                                 Move to...

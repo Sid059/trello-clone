@@ -72,7 +72,7 @@ export default function BoardPage() {
     };
 
     return (
-        <div className="min-h-screen p-6" style={{ backgroundColor: '#f4f5f7' }}>
+        <div className="min-h-screen p-6" style={{ backgroundColor: '#f1f2f4' }}>
             <div className="max-w-6xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
                     <div className="flex items-center gap-3">
@@ -111,7 +111,8 @@ export default function BoardPage() {
                         </p>
                     </div>
                 ) : (
-                    <div className="flex gap-4 overflow-x-auto pb-4">
+                    // items-start is neeeded to ensure each list column grows vertically based on its content, rather than being forced to stretch to the height of the tallest column
+                    <div className="flex gap-4 pb-4 items-start">
                         {boardLists.map((list) => (
                             <ListColumn
                                 key={list.id}

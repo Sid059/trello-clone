@@ -56,7 +56,7 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="min-h-screen p-8" style={{ backgroundColor: '#f4f5f7' }}>
+        <div className="min-h-screen p-8 bg-trello-pattern">
             <div className="max-w-6xl mx-auto">
                 <div className="flex items-center gap-3 mb-8">
                     <img src={dashboard} alt="Boards" className="w-8 h-8" />
