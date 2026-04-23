@@ -27,7 +27,7 @@ export default function Card({ card, listId }) {
     };
     
     const handleMoveComplete = () => {
-        alert('Card moved successfully!');
+        //alert('Card moved successfully!');
     };
     
     return (
