@@ -72,57 +72,55 @@ export default function BoardPage() {
     };
 
     return (
-        <div className="min-h-screen p-6" style={{ backgroundColor: '#f1f2f4' }}>
-            <div className="max-w-6xl mx-auto">
-                <div className="flex justify-between items-center mb-6">
-                    <div className="flex items-center gap-3">
-                        <img src={boardIcon} alt="Board" className="w-8 h-8" />
-                        <h1 className="text-2xl font-bold text-gray-800">
-                            {board?.title || 'Unknown Board'}
-                        </h1>
+    <div className="min-h-screen p-6" style={{ backgroundColor: '#f1f2f4' }}>
+        <div className="w-full">  {/* Changed from max-w-6xl mx-auto */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div className="flex items-center gap-3">
+                    <img src={boardIcon} alt="Board" className="w-6 h-6 sm:w-8 sm:h-8" />
+                    <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
+                        {board?.title || 'Unknown Board'}
+                    </h1>
+                </div>
+                <Button variant="secondary" onClick={handleBack} className="text-sm">
+                    ← Back to Boards
+                </Button>
+            </div>
+
+            <div className="bg-[#ebecf0] rounded-lg p-3 mb-6 inline-block min-w-[272px]">
+                <div className="flex gap-2">
+                    <div className="flex-1">
+                        <Input
+                            value={newListTitle}
+                            onChange={handleListTitleChange}
+                            onKeyDown={handleKeyDown}
+                            placeholder="Enter list title..."
+                            className="bg-white text-sm"
+                        />
                     </div>
-                    <Button variant="secondary" onClick={handleBack} className="text-sm">
-                        ← Back to Boards
+                    <Button variant="primary" onClick={handleAddList} icon="add">
+                        Add List
                     </Button>
                 </div>
-
-                <div className="bg-[#ebecf0] rounded-lg p-3 mb-6 inline-block min-w-[272px]">
-                    {/* <h2 className="text-xl font-semibold mb-4">Add New List</h2> */}
-                    <div className="flex gap-2">
-                        <div className="flex-1">
-                            <Input
-                                value={newListTitle}
-                                onChange={handleListTitleChange}
-                                onKeyDown={handleKeyDown}
-                                placeholder="Enter list title (e.g., To Do, In Progress, Done)..."
-                                className="bg-white text-sm"
-                            />
-                        </div>
-                        <Button variant="primary" onClick={handleAddList} icon="add">
-                            Add List
-                        </Button>
-                    </div>
-                </div>
-
-                {boardLists.length === 0 ? (
-                    <div className="bg-white rounded-lg p-12 text-center border-2 border-dashed border-gray-300">
-                        <p className="text-gray-500 text-lg">
-                            No lists yet. Create your first list above!
-                        </p>
-                    </div>
-                ) : (
-                    // items-start is neeeded to ensure each list column grows vertically based on its content, rather than being forced to stretch to the height of the tallest column
-                    <div className="flex gap-4 pb-4 items-start">
-                        {boardLists.map((list) => (
-                            <ListColumn
-                                key={list.id}
-                                list={list}
-                                onDeleteList={handleDeleteList}
-                            />
-                        ))}
-                    </div>
-                )}
             </div>
+
+            {boardLists.length === 0 ? (
+                <div className="bg-white rounded-lg p-12 text-center border-2 border-dashed border-gray-300">
+                    <p className="text-gray-500 text-lg">
+                        No lists yet. Create your first list above!
+                    </p>
+                </div>
+            ) : (
+                <div className="flex gap-4 overflow-x-auto overflow-y-hidden pb-4 items-start">
+                    {boardLists.map((list) => (
+                        <ListColumn
+                            key={list.id}
+                            list={list}
+                            onDeleteList={handleDeleteList}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
-    );
+    </div>
+);
 }

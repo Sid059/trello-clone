@@ -58,11 +58,13 @@ export default function Dashboard() {
     return (
         <div className="min-h-screen p-8 bg-trello-pattern">
             <div className="max-w-6xl mx-auto">
-                <div className="flex items-center gap-3 mb-8">
-                    <img src={dashboard} alt="Boards" className="w-8 h-8" />
-                    <h1 className="text-3xl font-bold text-gray-800">
-                        My Boards
-                    </h1>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                    <div className="flex items-center gap-3">
+                        <img src={dashboard} alt="Boards" className="w-8 h-8" />
+                        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
+                            My Boards
+                        </h1>
+                    </div>
                 </div>
                 
                 <div className="bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-200">

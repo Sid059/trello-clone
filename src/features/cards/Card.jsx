@@ -33,7 +33,7 @@ export default function Card({ card, listId }) {
     return (
         <>
             <div 
-                className="bg-white rounded shadow-sm p-2 mb-2 group cursor-pointer hover:bg-gray-50 transition-colors border border-gray-200"
+                className="bg-white rounded shadow-sm p-1.5 mb-1.5 group cursor-pointer hover:bg-gray-50 transition-colors border border-gray-100"
             >
                 <div 
                     onClick={handleOpenModal}
@@ -50,7 +50,7 @@ export default function Card({ card, listId }) {
                     )}
                 </div>
                 
-                <div className="flex justify-end gap-1 mt-2 pt-1">
+                <div className="flex justify-end gap-1 mt-1 pt-1">
                     <MoveCardDropdown 
                         card={card}
                         currentListId={listId}
@@ -59,7 +59,7 @@ export default function Card({ card, listId }) {
                     <Button
                         variant="danger"
                         onClick={handleDelete}
-                        className="text-xs px-2 py-1"
+                        className="text-xs px-1 py-0.5"
                         icon="delete"
                     >
 

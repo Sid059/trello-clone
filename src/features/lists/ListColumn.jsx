@@ -54,21 +54,21 @@ export default function ListColumn({ list, onDeleteList }) {
     const listCards = getListCards();
 
     return (
-        <div className="bg-[#ebecf0] rounded-lg p-3 min-w-[272px] max-w-[272px]">
-            <div className="flex justify-between items-center mb-3">
+        <div className="bg-[#ebecf0] rounded-lg p-2 min-w-[272px] max-w-[272px]">
+            <div className="flex justify-between items-center mb-1">
                 <h3 className="font-semibold text-gray-700 text-sm uppercase tracking-wide">
                     {list.title}
                 </h3>
                 <Button
                     variant="danger"
                     onClick={handleDeleteClick}
-                    className="text-xs px-2 py-1 opacity-0 group-hover/list:opacity-100 transition-opacity"
+                    className="text-xs bg-white rounded px-1.5 py-1 w-full"
                     icon="delete"
                 >
                 </Button>
             </div>
 
-            <div className="min-h-[100px] mb-2">
+            <div className="min-h-[100px] mb-1">
                 {listCards.length === 0 ? (
                     <p className="text-gray-400 text-sm text-center py-4">
                         No cards yet
@@ -81,14 +81,14 @@ export default function ListColumn({ list, onDeleteList }) {
             </div>
             
 
-            <div className="mt-2 pt-2 border-t border-gray-300">
+            <div className="mt-1 pt-1 border-t border-gray-300">
                 <div className="flex gap-2">
                     <Input
                         value={newCardTitle}
                         onChange={handleCardInputChange}
                         onKeyDown={handleCardKeyDown}
                         placeholder="+ Add a card..."
-                        className="text-sm bg-transparent border-none shadow-none focus:ring-0 px-2 py-1"
+                        className="text-sm bg-transparent border-none shadow-none focus:ring-0 px-1.5 py-0.5"
                     />
                     <Button
                         variant="primary"
