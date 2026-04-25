@@ -1,4 +1,4 @@
-# TaskFlow 🗂️
+# TaskFlow 
 ### A Trello-style Kanban Board Application
 
 Built to master Redux state management in a real-world application context.
